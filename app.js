@@ -146,8 +146,8 @@ let checkResult = async (result) =>
 
     else if(result === "Intern")
     {
-        let {name, id, email, officenum} = await getEmployee(newIntern);
-        employees.push(new Intern(name, id, email, officenum));
+        let {name, id, email, school} = await getEmployee(newIntern);
+        employees.push(new Intern(name, id, email, school));
     }
 
     else if(result === "Continue")
