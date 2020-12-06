@@ -33,3 +33,88 @@ const render = require("./lib/htmlRenderer");
 // for further information. Be sure to test out each class and verify it generates an
 // object with the correct structure and methods. This structure will be crucial in order
 // for the provided `render` function to work! ```
+
+const newManager = 
+[{
+    type: 'input',
+    name: 'title',
+    message: "Manager's name?",
+},
+{
+    type: 'input',
+    name: 'title',
+    message: "Manager's ID?",
+},
+{
+    type: 'input',
+    name: 'title',
+    message: "Manager's email?",
+},
+{
+    type: 'input',
+    name: 'title',
+    message: "Manager's office number?",
+}]
+
+const newEngineer = 
+[{
+    type: 'input',
+    name: 'title',
+    message: "Engineer's name?",
+},
+{
+    type: 'input',
+    name: 'title',
+    message: "Engineer's ID?",
+},
+{
+    type: 'input',
+    name: 'title',
+    message: "Engineer's email?",
+},
+{
+    type: 'input',
+    name: 'title',
+    message: "Engineer's GitHub?",
+}]
+
+const newIntern = 
+[{
+    type: 'input',
+    name: 'title',
+    message: "Intern's name?",
+},
+{
+    type: 'input',
+    name: 'title',
+    message: "Intern's ID?",
+},
+{
+    type: 'input',
+    name: 'title',
+    message: "Intern's email?",
+},
+{
+    type: 'input',
+    name: 'title',
+    message: "Intern's school?",
+}]
+
+let a = new Manager("Manager", 12, "manager@email.com", 3);
+let b = new Engineer("Engineer", 3, "engineer@email.com", "calebkw91");
+let c = new Intern("Intern", 1, "intern@email.com", "iowa state");
+
+let html = render([a, b, c]);
+
+fs.writeFile(outputPath, html, (err) =>
+{
+    if(err)
+    {
+        return console.log(err);
+    }
+    else
+    {
+        console.log("File Saved!");
+    }
+});
+
