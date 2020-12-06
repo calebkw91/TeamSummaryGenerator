@@ -135,19 +135,28 @@ let checkResult = async (result) =>
     if(result === "Manager")
     {
         let {name, id, email, officenum} = await getEmployee(newManager);
-        employees.push(new Manager(name, id, email, officenum));
+        if(verifyResult([name, id, email, officenum]))
+        {
+            employees.push(new Manager(name, id, email, officenum));
+        }
     }
 
     else if(result === "Engineer")
     {
         let {name, id, email, github} = await getEmployee(newEngineer);
-        employees.push(new Engineer(name, id, email, github));
+        if(verifyResult([name, id, email, github]))
+        {
+            employees.push(new Engineer(name, id, email, github));
+        }
     }
 
     else if(result === "Intern")
     {
         let {name, id, email, school} = await getEmployee(newIntern);
-        employees.push(new Intern(name, id, email, school));
+        if(verifyResult([name, id, email, school]))
+        {
+            employees.push(new Intern(name, id, email, school));
+        }
     }
 
     else if(result === "Continue")
@@ -171,6 +180,19 @@ let checkResult = async (result) =>
     {
         throw new Error("Unknown error")
     }
+}
+
+let verifyResult = (result) =>
+{
+    result.forEach(val => 
+    {
+        if(val === "")
+        {
+            console.log("Unexpected input, employee not saved.");
+            return false;
+        }
+    })
+    return true;
 }
 
 getResponse(newEmployee);
