@@ -34,69 +34,83 @@ const render = require("./lib/htmlRenderer");
 // object with the correct structure and methods. This structure will be crucial in order
 // for the provided `render` function to work! ```
 
+const newEmployee = 
+[{
+    type: 'list',
+    name: 'employee',
+    message: "Select new employee type, or continue if you are done adding employees:",
+    choices:
+    [
+        'Manager',
+        'Engineer',
+        'Intern',
+        'Continue'
+    ]
+}]
+
 const newManager = 
 [{
     type: 'input',
-    name: 'title',
+    name: 'name',
     message: "Manager's name?",
 },
 {
     type: 'input',
-    name: 'title',
+    name: 'id',
     message: "Manager's ID?",
 },
 {
     type: 'input',
-    name: 'title',
+    name: 'email',
     message: "Manager's email?",
 },
 {
     type: 'input',
-    name: 'title',
+    name: 'officenum',
     message: "Manager's office number?",
 }]
 
 const newEngineer = 
 [{
     type: 'input',
-    name: 'title',
+    name: 'name',
     message: "Engineer's name?",
 },
 {
     type: 'input',
-    name: 'title',
+    name: 'id',
     message: "Engineer's ID?",
 },
 {
     type: 'input',
-    name: 'title',
+    name: 'email',
     message: "Engineer's email?",
 },
 {
     type: 'input',
-    name: 'title',
+    name: 'github',
     message: "Engineer's GitHub?",
 }]
 
 const newIntern = 
 [{
     type: 'input',
-    name: 'title',
+    name: 'name',
     message: "Intern's name?",
 },
 {
     type: 'input',
-    name: 'title',
+    name: 'id',
     message: "Intern's ID?",
 },
 {
     type: 'input',
-    name: 'title',
+    name: 'email',
     message: "Intern's email?",
 },
 {
     type: 'input',
-    name: 'title',
+    name: 'school',
     message: "Intern's school?",
 }]
 
