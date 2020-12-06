@@ -34,6 +34,8 @@ const render = require("./lib/htmlRenderer");
 // object with the correct structure and methods. This structure will be crucial in order
 // for the provided `render` function to work! ```
 
+let employees = [];
+
 const newEmployee = 
 [{
     type: 'list',
@@ -114,21 +116,62 @@ const newIntern =
     message: "Intern's school?",
 }]
 
-let a = new Manager("Manager", 12, "manager@email.com", 3);
-let b = new Engineer("Engineer", 3, "engineer@email.com", "calebkw91");
-let c = new Intern("Intern", 1, "intern@email.com", "iowa state");
-
-let html = render([a, b, c]);
-
-fs.writeFile(outputPath, html, (err) =>
+let getResponse = async (questions) =>
 {
-    if(err)
+    let result = await inquirer.prompt(questions);
+    checkResult(result.employee);
+}
+
+let getEmployee = async (questions) =>
+{
+    let result = await inquirer.prompt(questions);
+    getResponse(newEmployee);
+    return result;
+}
+
+let checkResult = async (result) =>
+{
+    console.log(result);
+    if(result === "Manager")
     {
-        return console.log(err);
+        let {name, id, email, officenum} = await getEmployee(newManager);
+        employees.push(new Manager(name, id, email, officenum));
     }
+
+    else if(result === "Engineer")
+    {
+        let {name, id, email, github} = await getEmployee(newEngineer);
+        employees.push(new Engineer(name, id, email, github));
+    }
+
+    else if(result === "Intern")
+    {
+        let {name, id, email, officenum} = await getEmployee(newIntern);
+        employees.push(new Intern(name, id, email, officenum));
+    }
+
+    else if(result === "Continue")
+    {
+        let html = render(employees);
+
+        fs.writeFile(outputPath, html, (err) =>
+        {
+            if(err)
+            {
+                return console.log(err);
+            }
+            else
+            {
+                console.log("File Saved!");
+            }
+        });
+    }
+
     else
     {
-        console.log("File Saved!");
+        throw new Error("Unknown error")
     }
-});
+}
+
+getResponse(newEmployee);
 
