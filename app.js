@@ -125,7 +125,6 @@ let getResponse = async (questions) =>
 let getEmployee = async (questions) =>
 {
     let result = await inquirer.prompt(questions);
-    getResponse(newEmployee);
     return result;
 }
 
@@ -139,6 +138,12 @@ let checkResult = async (result) =>
         {
             employees.push(new Manager(name, id, email, officenum));
         }
+        else
+        {
+            console.log(`\nUnexpected input, employee not saved.\n`);
+        }
+
+        getResponse(newEmployee);
     }
 
     else if(result === "Engineer")
@@ -148,6 +153,12 @@ let checkResult = async (result) =>
         {
             employees.push(new Engineer(name, id, email, github));
         }
+        else
+        {
+            console.log(`\nUnexpected input, employee not saved.\n`);
+        }
+
+        getResponse(newEmployee);
     }
 
     else if(result === "Intern")
@@ -157,6 +168,12 @@ let checkResult = async (result) =>
         {
             employees.push(new Intern(name, id, email, school));
         }
+        else
+        {
+            console.log(`\nUnexpected input, employee not saved.\n`);
+        }
+
+        getResponse(newEmployee);
     }
 
     else if(result === "Continue")
@@ -184,15 +201,16 @@ let checkResult = async (result) =>
 
 let verifyResult = (result) =>
 {
+    let check = true;
+
     result.forEach(val => 
     {
         if(val === "")
         {
-            console.log("Unexpected input, employee not saved.");
-            return false;
+            check = false;
         }
     })
-    return true;
+    return check;
 }
 
 getResponse(newEmployee);
